@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">심플한 용돈기입장</string>
+
+    <string name="list">소비내역</string>
+    <string name="income_and_expense">수입/지출</string>
+    <string name="menu_whole">전체</string>
+    <string name="whole_list">전체 ▾</string>
+    <string name="whole_list_income">전체 수입 : </string>
+    <string name="whole_list_expense">전체 지출 : </string>
+    <string name="menu_month">이번 달</string>
+    <string name="month_list">이번 달 ▾</string>
+    <string name="month_list_income">이달 수입 : </string>
+    <string name="month_list_expense">이달 지출 : </string>
+    <string name="menu_year">이번 연도</string>
+    <string name="year_list">이번 연도 ▾</string>
+    <string name="year_list_income">올해 수입 : </string>
+    <string name="year_list_expense">올해 지출 : </string>
+    <string name="list_balance">총 잔액 : </string>
+    <string name="list_add">내역 추가</string>
+    <string name="setting">설정</string>
 </resources>
