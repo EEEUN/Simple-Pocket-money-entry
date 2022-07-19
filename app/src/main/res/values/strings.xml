@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">깔끔한 예산관리 앱</string>
+    <string name="app_name">깔끔한 예산관리</string>
 
     <!--    홈-->
     <string name="home">홈</string>
+    <string name="total_balance">총 잔액</string>
+
+
+    <!--    추가-->
+    <string name="add">추가</string>
+
 
     <!--    내역-->
     <string name="list">내역</string>

@@ -8,10 +8,16 @@
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable-v24/ic_list.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable-v24/ic_setting.xml" value="0.175" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable-v24/navi_selector_color.xml" value="0.189" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home.xml" value="0.189" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn.xml" value="0.189" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn2.xml" value="0.189" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn3.xml" value="0.189" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_rectangle.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_round.xml" value="0.175" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/ic_home.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_chart.xml" value="0.2246376811594203" />
-        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_home.xml" value="0.2246376811594203" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_list.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_setting.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/item_list.xml" value="0.2246376811594203" />

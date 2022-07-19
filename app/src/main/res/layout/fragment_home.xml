@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.HomeFragment">
+    tools:context=".home.HomeFragment"
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/bg_home_rectangle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="홈" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_home_rectangle"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:outlineProvider="bounds"
+        android:elevation="20dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="23dp"
+            android:text="@string/total_balance"
+            android:textSize="20sp"
+            android:textAppearance="@style/text_home_rectangle" />
+
+        <TextView
+            android:id="@+id/total_balance_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="100,000원"
+            android:textSize="60sp"
+            android:textAppearance="@style/text_home_rectangle" />
+
+        <TextView
+            android:id="@+id/month_income_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="이번 달 수입 : "
+            android:textSize="25sp"
+            android:textAppearance="@style/text_home_rectangle" />
+
+        <TextView
+            android:id="@+id/month_expense_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:text="이번 달 지출 : "
+            android:textSize="25sp"
+            android:textAppearance="@style/text_home_rectangle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="2" >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/home_btn1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/bg_home_btn1"
+            android:drawableTop="@drawable/ic_add"
+            android:drawableTint="@color/white"
+            android:paddingTop="10dp"
+            android:text="@string/add"
+            android:textColor="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/home_btn2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/bg_home_btn2"
+            android:drawableTop="@drawable/ic_list"
+            android:drawableTint="@color/white"
+            android:paddingTop="10dp"
+            android:text="@string/list"
+            android:textColor="@color/white"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/home_btn3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/bg_home_btn3"
+            android:drawableTop="@drawable/ic_chart"
+            android:drawableTint="@color/white"
+            android:paddingTop="10dp"
+            android:text="@string/chart"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>
