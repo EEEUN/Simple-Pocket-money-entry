@@ -1,91 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/list_header"
+    <LinearLayout
+        android:id="@+id/home_ly"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="@string/income_and_expense" />
-
-        <TextView
-            android:id="@+id/date_popup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:padding="10dp"
-            android:gravity="start|center"
-            android:textColor="@color/gray"
-            android:textSize="15sp"
-            android:text="@string/whole_list" />
-    </FrameLayout>
-
-    <RelativeLayout
-        android:id="@+id/list_balance"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/list_header"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-
-        <TextView
-            android:id="@+id/income"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/whole_list_income"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/expense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/income"
-            android:text="@string/whole_list_expense"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/balance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/expense"
-            android:text="@string/list_balance"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_recyceler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/list_balance"
-        android:layout_margin="10dp"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/list_add_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="20dp"
-            android:contentDescription="@string/list_add"
-            android:src="@drawable/ic_add"
-            app:backgroundTint="@color/white"
-            app:fabSize="normal" />
-    </FrameLayout>
-</RelativeLayout>
+        android:layout_height="56dp"
+        app:menu="@menu/btm_navi_menu_item"
+        app:itemBackground="@android:color/white"
+        app:itemIconTint="@drawable/navi_selector_color"
+        app:itemTextColor="@drawable/navi_selector_color"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</LinearLayout>

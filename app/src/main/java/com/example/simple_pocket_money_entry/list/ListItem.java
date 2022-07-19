@@ -1,4 +1,4 @@
-package com.example.simple_pocket_money_entry;
+package com.example.simple_pocket_money_entry.list;
 
 import java.util.List;
 

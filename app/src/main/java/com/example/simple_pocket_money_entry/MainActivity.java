@@ -1,131 +1,67 @@
 package com.example.simple_pocket_money_entry;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.simple_pocket_money_entry.chart.ChartFragment;
+import com.example.simple_pocket_money_entry.home.HomeFragment;
+import com.example.simple_pocket_money_entry.list.ListFragment;
+import com.example.simple_pocket_money_entry.setting.SettingFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
-    private TextView dateView;
-    private FloatingActionButton addButton;
-    private RecyclerView recyclerView;
-    private ListAdapter listAdapter;
-    private Dialog addDialog;
+    LinearLayout homeLayout;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dateView = findViewById(R.id.date_popup);
-        addButton = findViewById(R.id.list_add_button);
-        recyclerView = findViewById(R.id.list_recyceler_view);
+        homeLayout = findViewById(R.id.home_ly);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        addDialog = new Dialog(MainActivity.this);
-        addDialog.setContentView(R.layout.list_add_dialog);
-
-        // about RecyclerView
-        recyclerView.setHasFixedSize(true);
-        listAdapter = new ListAdapter(buildItemList());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(listAdapter);
-        recyclerView.setRecycledViewPool(viewPool);
-
-        dateView.setOnClickListener(this);
-        addButton.setOnClickListener(this);
+        BottomNavigationListener();
+        bottomNavigationView.setSelectedItemId(R.id.tab_home);  //맨 처음 시작할 탭 설정
     }
 
-    //  (내역추가 기능 추가 시 삭제 예정) --------------------------------------------------
-    // 상위아이템 큰박스 아이템을 10개 만듭니다.
-    private List<ListItem> buildItemList() {
-        List<ListItem> itemList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            ListItem listItem = new ListItem(i + "번째 아이템", buildSubItemList());
-            itemList.add(listItem);
-        }
-        return itemList;
-    }
-    // 그안에 존재하는 하위 아이템 박스(3개씩 보이는 아이템들)
-    private List<ListSubItem> buildSubItemList() {
-        List<ListSubItem> subItemList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            ListSubItem listSubItem = new ListSubItem("Sub Item "+i, "Description "+i);
-            subItemList.add(listSubItem);
-        }
-        return subItemList;
-    }
-    //  (내역추가 기능 추가 시 삭제 예정) --------------------------------------------------
-
-    @Override
-    public void onClick(View view) {
-        switch(view.getId()) {
-            case R.id.date_popup:
-                showPopup(dateView);
-                break;
-            case R.id.list_add_button:
-                showAddDialog();
-        }
-    }
-
-    private void showPopup(View view) {
-        final PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-        popupMenu.getMenuInflater().inflate(R.menu.list_date_popup, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+    // 하단 네비게이션 바의 아이콘을 선택하면 해당 페이지로 이동
+    private void BottomNavigationListener() {
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch(menuItem.getItemId()) {
-                    case R.id.popup_full:
-                        Toast.makeText(getApplicationContext(), "전체", Toast.LENGTH_SHORT).show();
-                        // 전체 날짜 보기 전환
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.tab_home: {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.home_ly, new HomeFragment())
+                                .commit();
                         return true;
-
-                    case R.id.popup_month:
-                        Toast.makeText(getApplicationContext(), "이번 달", Toast.LENGTH_SHORT).show();
-                        // 이번 달 보기 전환
+                    }
+                    case R.id.tab_list: {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.home_ly, new ListFragment())
+                                .commit();
                         return true;
-
-                    case R.id.popup_year:
-                        Toast.makeText(getApplicationContext(), "이번 연도", Toast.LENGTH_SHORT).show();
-                        // 이번 연도 보기 전환
+                    }
+                    case R.id.tab_chart: {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.home_ly, new ChartFragment())
+                                .commit();
                         return true;
-
-                    default:
-                        return false;
+                    }
+                    case R.id.tab_setting: {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.home_ly, new SettingFragment())
+                                .commit();
+                        return true;
+                    }
                 }
-            }
-        });
-        popupMenu.show();
-    }
-
-    private void showAddDialog() {
-        addDialog.show();
-        addDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        // 기능 넣기
-
-        addDialog.findViewById(R.id.no_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addDialog.dismiss();
+                return false;
             }
         });
     }

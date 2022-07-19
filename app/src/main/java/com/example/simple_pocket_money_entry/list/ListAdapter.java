@@ -1,4 +1,4 @@
-package com.example.simple_pocket_money_entry;
+package com.example.simple_pocket_money_entry.list;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.simple_pocket_money_entry.R;
 
 import java.util.List;
 

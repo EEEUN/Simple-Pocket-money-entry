@@ -1,7 +1,19 @@
 <resources>
-    <string name="app_name">심플한 용돈기입장</string>
+    <string name="app_name">깔끔한 예산관리 앱</string>
 
-    <string name="list">소비내역</string>
+    <!--    홈-->
+    <string name="home">홈</string>
+
+    <!--    내역-->
+    <string name="list">내역</string>
+
+    <!--    분석-->
+    <string name="chart">분석</string>
+
+    <!--    설정-->
+    <string name="setting">설정</string>
+
+
     <string name="income_and_expense">수입/지출</string>
     <string name="menu_whole">전체</string>
     <string name="whole_list">전체 ▾</string>
@@ -17,5 +29,4 @@
     <string name="year_list_expense">올해 지출 : </string>
     <string name="list_balance">총 잔액 : </string>
     <string name="list_add">내역 추가</string>
-    <string name="setting">설정</string>
 </resources>
