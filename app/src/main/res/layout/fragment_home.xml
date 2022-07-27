@@ -10,12 +10,10 @@
         android:id="@+id/bg_home_rectangle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_home_rectangle"
-        android:layout_weight="1"
+        android:background="@color/point_blue"
+        android:layout_weight="2"
         android:gravity="bottom"
-        android:orientation="vertical"
-        android:outlineProvider="bounds"
-        android:elevation="20dp">
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/total_text"
@@ -25,7 +23,7 @@
             android:layout_marginStart="23dp"
             android:text="@string/total_balance"
             android:textSize="20sp"
-            android:textAppearance="@style/text_home_rectangle" />
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/total_balance_text"
@@ -34,7 +32,7 @@
             android:layout_marginStart="20dp"
             android:text="100,000원"
             android:textSize="60sp"
-            android:textAppearance="@style/text_home_rectangle" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/month_income_text"
@@ -44,7 +42,7 @@
             android:layout_marginTop="20dp"
             android:text="이번 달 수입 : "
             android:textSize="25sp"
-            android:textAppearance="@style/text_home_rectangle" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/month_expense_text"
@@ -55,53 +53,40 @@
             android:layout_marginBottom="30dp"
             android:text="이번 달 지출 : "
             android:textSize="25sp"
-            android:textAppearance="@style/text_home_rectangle" />
-
-    </LinearLayout>
+            android:textColor="@color/white" />
+" </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
-        android:layout_weight="2" >
+        android:layout_weight="1" >
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/home_btn1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/bg_home_btn1"
-            android:drawableTop="@drawable/ic_add"
-            android:drawableTint="@color/white"
-            android:paddingTop="10dp"
-            android:text="@string/add"
-            android:textColor="@color/white"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9E9E9E"
+            android:text="@string/list_shortcut"
+            android:background="@drawable/bg_home_btn_type1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/home_btn2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/bg_home_btn2"
-            android:drawableTop="@drawable/ic_list"
-            android:drawableTint="@color/white"
-            android:paddingTop="10dp"
-            android:text="@string/list"
-            android:textColor="@color/white"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9E9E9E"
+            android:text="@string/chart_shortcut"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_home_btn_type1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/home_btn3"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/bg_home_btn3"
-            android:drawableTop="@drawable/ic_chart"
-            android:drawableTint="@color/white"
-            android:paddingTop="10dp"
-            android:text="@string/chart"
-            android:textColor="@color/white" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/add_shortcut"
+            android:background="@drawable/bg_home_btn_type2" />
     </LinearLayout>
 
 </LinearLayout>

@@ -4,11 +4,13 @@
     <!--    홈-->
     <string name="home">홈</string>
     <string name="total_balance">총 잔액</string>
+    <string name="list_shortcut">소비 내역 바로가기</string>
+    <string name="chart_shortcut">소비 분석·통계 바로가기</string>
+    <string name="add_shortcut">내역 추가하기</string>
 
 
     <!--    추가-->
     <string name="add">추가</string>
-
 
     <!--    내역-->
     <string name="list">내역</string>
@@ -19,20 +21,4 @@
     <!--    설정-->
     <string name="setting">설정</string>
 
-
-    <string name="income_and_expense">수입/지출</string>
-    <string name="menu_whole">전체</string>
-    <string name="whole_list">전체 ▾</string>
-    <string name="whole_list_income">전체 수입 : </string>
-    <string name="whole_list_expense">전체 지출 : </string>
-    <string name="menu_month">이번 달</string>
-    <string name="month_list">이번 달 ▾</string>
-    <string name="month_list_income">이달 수입 : </string>
-    <string name="month_list_expense">이달 지출 : </string>
-    <string name="menu_year">이번 연도</string>
-    <string name="year_list">이번 연도 ▾</string>
-    <string name="year_list_income">올해 수입 : </string>
-    <string name="year_list_expense">올해 지출 : </string>
-    <string name="list_balance">총 잔액 : </string>
-    <string name="list_add">내역 추가</string>
 </resources>

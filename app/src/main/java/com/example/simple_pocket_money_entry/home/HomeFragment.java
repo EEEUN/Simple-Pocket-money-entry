@@ -25,13 +25,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        addButton = view.findViewById(R.id.home_btn1);
-        listButton = view.findViewById(R.id.home_btn2);
-        chartButton = view.findViewById(R.id.home_btn3);
+        listButton = view.findViewById(R.id.home_btn1);
+        chartButton = view.findViewById(R.id.home_btn2);
+        addButton = view.findViewById(R.id.home_btn3);
 
-        addButton.setOnClickListener(this);
         listButton.setOnClickListener(this);
         chartButton.setOnClickListener(this);
+        addButton.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
@@ -41,13 +41,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.home_btn1:
-                // 내역 추가 화면으로 이동
-                break;
-            case R.id.home_btn2:
                 ((BottomNavigationView)getActivity().findViewById(R.id.bottomNavigationView)).setSelectedItemId(R.id.tab_list);
                 break;
-            case R.id.home_btn3:
+            case R.id.home_btn2:
                 ((BottomNavigationView)getActivity().findViewById(R.id.bottomNavigationView)).setSelectedItemId(R.id.tab_chart);
+                break;
+            case R.id.home_btn3:
+                // 내역 추가 화면으로 이동
                 break;
         }
     }
