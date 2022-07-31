@@ -43,7 +43,7 @@ public class ListFragment extends Fragment {
     private List<ListItem> buildItemList() {
         List<ListItem> itemList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            ListItem listItem = new ListItem(i + "번째 아이템", buildSubItemList());
+            ListItem listItem = new ListItem(i + " 2022/07/31", buildSubItemList());
             itemList.add(listItem);
         }
         return itemList;
@@ -52,7 +52,7 @@ public class ListFragment extends Fragment {
     private List<ListSubItem> buildSubItemList() {
         List<ListSubItem> subItemList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            ListSubItem listSubItem = new ListSubItem("Sub Item "+i, "Description "+i);
+            ListSubItem listSubItem = new ListSubItem("주식회사 드림에이스 "+i, "Description "+i);
             subItemList.add(listSubItem);
         }
         return subItemList;

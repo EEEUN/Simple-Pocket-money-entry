@@ -10,7 +10,16 @@
 
 
     <!--    추가-->
-    <string name="add">추가</string>
+    <string name="add">내역 추가</string>
+    <string name="income">수입</string>
+    <string name="expense">지출</string>
+    <string name="date">날짜</string>
+    <string name="content">내용</string>
+    <string name="amount">금액</string>
+    <string name="category">카테고리</string>
+    <string name="add_ok">추가</string>
+    <string name="no">취소</string>
+
 
     <!--    내역-->
     <string name="list">내역</string>

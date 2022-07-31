@@ -6,7 +6,7 @@
     tools:context=".setting.SettingFragment">
 
     <FrameLayout
-        android:id="@+id/list_header"
+        android:id="@+id/setting_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/point_blue">

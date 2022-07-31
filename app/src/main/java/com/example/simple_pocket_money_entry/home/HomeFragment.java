@@ -1,5 +1,6 @@
 package com.example.simple_pocket_money_entry.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import com.example.simple_pocket_money_entry.AddActivity;
 import com.example.simple_pocket_money_entry.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,7 +49,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 ((BottomNavigationView)getActivity().findViewById(R.id.bottomNavigationView)).setSelectedItemId(R.id.tab_chart);
                 break;
             case R.id.home_btn3:
-                // 내역 추가 화면으로 이동
+                Intent intent = new Intent(getActivity(), AddActivity.class);
+                startActivity(intent);
                 break;
         }
     }
