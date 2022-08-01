@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
-import com.example.simple_pocket_money_entry.AddActivity;
+import com.example.simple_pocket_money_entry.add.AddActivity;
 import com.example.simple_pocket_money_entry.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

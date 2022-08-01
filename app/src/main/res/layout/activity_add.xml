@@ -40,17 +40,19 @@
             android:orientation="horizontal" >
 
             <RadioButton
+                android:id="@+id/add_type1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
-                android:text="수입"
+                android:text="@string/income"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <RadioButton
+                android:id="@+id/add_type2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="지출"
+                android:text="@string/expense"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </RadioGroup>
@@ -67,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="날짜"
+                android:text="@string/date"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <TextView
@@ -83,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:backgroundTint="@color/point_blue"
-                android:text="변경" />
+                android:text="@string/change" />
         </LinearLayout>
 
     <!--    내용 입력-->
@@ -98,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="내용"
+                android:text="@string/content"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <EditText
@@ -126,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="카테고리"
+                android:text="@string/category"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <TextView
@@ -137,13 +139,13 @@
                 android:ems="3"
                 android:textSize="20dp"
                 android:textColor="@color/gray"
-                android:text="식비"/>
+                android:text="@string/category_eat"/>
             <Button
                 android:id="@+id/category_picker_button"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:backgroundTint="@color/point_blue"
-                android:text="변경" />
+                android:text="@string/change" />
         </LinearLayout>
 
     <!--    금액 입력-->
@@ -158,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="금액"
+                android:text="@string/amount"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <EditText
@@ -181,19 +183,19 @@
             android:layout_gravity="center">
 
             <Button
-                android:id="@+id/delete"
+                android:id="@+id/ok_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
                 android:backgroundTint="@color/point_blue"
-                android:text="추가" />
+                android:text="@string/add_ok" />
 
             <Button
-                android:id="@+id/join_button"
+                android:id="@+id/no_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/point_blue"
-                android:text="취소" />
+                android:text="@string/no" />
         </LinearLayout>
 
         <TextView
@@ -202,8 +204,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
+            android:visibility="invisible"
             android:textColor="@color/red"
-            android:text="입력하지 않은 사항이 있습니다!"
+            android:text="@string/add_error"
             android:textSize="15dp" />
     </LinearLayout>
 </LinearLayout>
