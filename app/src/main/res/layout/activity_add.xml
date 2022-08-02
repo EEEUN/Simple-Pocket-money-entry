@@ -27,8 +27,17 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_margin="50dp"
         android:gravity="center_vertical"
         android:orientation="vertical" >
+
+<!--        <DatePicker-->
+<!--            android:id="@+id/datePicker"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:calendarViewShown="false"-->
+<!--            android:datePickerMode="calendar" />-->
 
     <!--    수입 or 지출 선택-->
         <RadioGroup
@@ -79,10 +88,16 @@
                 android:layout_marginEnd="20dp"
                 android:textSize="20dp"
                 android:textColor="@color/gray"
-                android:text="2022/07/31"/>
+                android:text="2022.7.31."/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <Button
                 android:id="@+id/date_picker_button"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:backgroundTint="@color/point_blue"
                 android:text="@string/change" />
@@ -108,12 +123,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:ems="9"
+                android:ems="10"
                 android:singleLine="true"
-                android:maxLength="9"
+                android:maxLength="10"
                 android:textSize="20dp"
                 android:textColor="@color/gray"
-                android:hint="ㅇㅇ식당"/>
+                android:hint="구내식당"/>
         </LinearLayout>
 
         <!--    카테고리 선택-->
@@ -136,13 +151,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:ems="3"
+                android:ems="5"
                 android:textSize="20dp"
                 android:textColor="@color/gray"
                 android:text="@string/category_eat"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <Button
                 android:id="@+id/category_picker_button"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:backgroundTint="@color/point_blue"
                 android:text="@string/change" />
@@ -168,9 +189,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:ems="9"
+                android:ems="10"
                 android:singleLine="true"
-                android:maxLength="9"
+                android:maxLength="10"
                 android:textSize="20dp"
                 android:textColor="@color/gray"
                 android:hint="7000원"/>
@@ -197,16 +218,5 @@
                 android:backgroundTint="@color/point_blue"
                 android:text="@string/no" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/add_error_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:visibility="invisible"
-            android:textColor="@color/red"
-            android:text="@string/add_error"
-            android:textSize="15dp" />
     </LinearLayout>
 </LinearLayout>

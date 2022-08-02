@@ -20,7 +20,7 @@
     <string name="category">카테고리</string>
     <string name="add_ok">추가</string>
     <string name="no">취소</string>
-    <string name="add_error">입력하지 않은 사항이 있습니다!</string>
+    <string name="choose_category_dialog_title">카테고리를 선택하세요.</string>
 
 
     <!--    카테고리-->
