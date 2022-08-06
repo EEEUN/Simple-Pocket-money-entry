@@ -1,12 +1,12 @@
 package com.example.simple_pocket_money_entry.list;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simple_pocket_money_entry.R;
@@ -15,7 +15,6 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
-    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private List<ListItem> listItem;
 
     // 생성자를 통해서 데이터를 전달받도록 한다.
@@ -25,13 +24,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     // ViewHolder Class를 선언한다.
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private RecyclerView subView;
-        private TextView title;
+        private TextView date, content, category, fullAmount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.item_title);
-            subView = itemView.findViewById(R.id.sub_item);
+            date = itemView.findViewById(R.id.item_date);
+            content = itemView.findViewById(R.id.item_content);
+            category = itemView.findViewById(R.id.item_category);
+            fullAmount = itemView.findViewById(R.id.item_amount);
         }
     }
 
@@ -50,22 +50,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder viewHolder, int position) {
         ListItem item = this.listItem.get(position);
-        viewHolder.title.setText(item.getItemTitle());
+        viewHolder.date.setText(item.getItemDate());
+        viewHolder.content.setText(item.getItemContent());
+        viewHolder.category.setText(item.getItemCategory());
+        viewHolder.fullAmount.setText(item.getItemAmount());
 
-        // 자식 레이아웃 매니저 설정
-        LinearLayoutManager layoutManager = new LinearLayoutManager(
-                viewHolder.subView.getContext(),
-                LinearLayoutManager.VERTICAL,
-                false
-        );
-        layoutManager.setInitialPrefetchItemCount(item.getSubItemList().size());
-
-        // 자식 어답터 설정
-        SubListAdapter subListAdapter = new SubListAdapter(item.getSubItemList());
-
-        viewHolder.subView.setLayoutManager(layoutManager);
-        viewHolder.subView.setAdapter(subListAdapter);
-        viewHolder.subView.setRecycledViewPool(viewPool);
+        if(viewHolder.fullAmount.getText().toString().contains("-")) {
+            viewHolder.fullAmount.setTextColor(Color.parseColor("#000000"));
+        }
     }
 
     // 전체 데이터의 개수를 리턴한다.

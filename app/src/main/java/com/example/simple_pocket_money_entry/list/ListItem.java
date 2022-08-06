@@ -4,30 +4,46 @@ import java.util.List;
 
 // 상위 리사이클러뷰 아이템클래스를 정의
 public class ListItem {
-    private String itemTitle;
-    // 하위 리사이클러뷰 아이템으로 정의한 subItemList를 전역변수로 선언한다.
-    private List<ListSubItem> subItemList;
+    private String itemDate, itemContent, itemCategory, itemAmount;
 
-    public ListItem(String itemTitle, List<ListSubItem> subItemList) {
-        this.itemTitle = itemTitle;
-        // 하위 리사이클러뷰
-        this.subItemList = subItemList;
+    public ListItem(String itemTitle, String itemContent, String itemCategory, String itemAmount) {
+        this.itemDate = itemTitle;
+        this.itemContent = itemContent;
+        this.itemCategory = itemCategory;
+        this.itemAmount = itemAmount;
     }
 
-    public String getItemTitle() {
-        return itemTitle;
+    public String getItemDate() {
+        return itemDate;
     }
 
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
+    public void setItemDate(String itemDate) {
+        this.itemDate = itemDate;
     }
 
-    public List<ListSubItem> getSubItemList() {
-        return subItemList;
+    public String getItemContent() {
+        return itemContent;
     }
 
-    public void setSubItemList(List<ListSubItem> subItemList) {
-        this.subItemList = subItemList;
+    public void setItemContent(String itemContent) {
+        this.itemContent = itemContent;
     }
+
+    public String getItemCategory() {
+        return itemCategory;
+    }
+
+    public void setItemCategory(String itemCategory) {
+        this.itemCategory = itemCategory;
+    }
+
+    public String getItemAmount() {
+        return itemAmount;
+    }
+
+    public void setItemAmount(String itemAmount) {
+        this.itemAmount = itemAmount;
+    }
+
 }
 

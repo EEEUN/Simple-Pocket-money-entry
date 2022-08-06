@@ -1,4 +1,4 @@
-package com.example.simple_pocket_money_entry.add;
+package com.example.simple_pocket_money_entry;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,10 +15,12 @@ public class DBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + TableInfo.TABLE_NAME + " (" +
                     TableInfo.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
                     TableInfo.COLUMN_NAME_TYPE + " TEXT," +
+                    TableInfo.COLUMN_NAME_FULL_DATE + " TEXT," +
                     TableInfo.COLUMN_NAME_DATE + " TEXT," +
                     TableInfo.COLUMN_NAME_CONTENT + " TEXT," +
                     TableInfo.COLUMN_NAME_CATEGORY + " TEXT," +
-                    TableInfo.COLUMN_NAME_AMOUNT + " TEXT)";
+                    TableInfo.COLUMN_NAME_AMOUNT + " TEXT," +
+                    TableInfo.COLUMN_NAME_FULL_AMOUNT + " TEXT)";
 
     private static final String SQL_DELETE_TABLE =
             "DROP TABLE IF EXISTS " + TableInfo.TABLE_NAME;

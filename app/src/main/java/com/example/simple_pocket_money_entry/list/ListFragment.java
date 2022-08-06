@@ -1,6 +1,9 @@
 package com.example.simple_pocket_money_entry.list;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,51 +13,48 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.simple_pocket_money_entry.DBHelper;
 import com.example.simple_pocket_money_entry.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListFragment extends Fragment {
-
     private final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private RecyclerView recyclerView;
-    private ListAdapter listAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-
-        // about RecyclerView
         recyclerView = view.findViewById(R.id.list_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        listAdapter = new ListAdapter(buildItemList());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(listAdapter);
-        recyclerView.setRecycledViewPool(viewPool);
+
+        showList();     // about RecyclerView
 
         return view;
     }
 
-    // 상위아이템 큰박스 아이템을 10개 만듭니다. (내역추가 기능 추가 시 삭제 예정)
-    private List<ListItem> buildItemList() {
+    private void showList() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        //Dbhelper의 읽기모드 객체를 가져와 SQLiteDatabase에 담아 사용준비
+        DBHelper helper = new DBHelper(getActivity().getApplicationContext());
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM myBreakdown ORDER BY full_date",null);
+
         List<ListItem> itemList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            ListItem listItem = new ListItem(i + " 2022/07/31", buildSubItemList());
-            itemList.add(listItem);
+        ListAdapter listAdapter = new ListAdapter(itemList);
+        if(cursor!= null) {
+            while (cursor.moveToNext()) {
+                ListItem listItem = new ListItem(cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(7));
+                itemList.add(listItem);
+            }
         }
-        return itemList;
-    }
-    // 그안에 존재하는 하위 아이템 박스(3개씩 보이는 아이템들) (내역추가 기능 추가 시 삭제 예정)
-    private List<ListSubItem> buildSubItemList() {
-        List<ListSubItem> subItemList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            ListSubItem listSubItem = new ListSubItem("주식회사 드림에이스 "+i, "Description "+i);
-            subItemList.add(listSubItem);
-        }
-        return subItemList;
+        recyclerView.setAdapter(listAdapter);
+        recyclerView.setRecycledViewPool(viewPool);
     }
 }

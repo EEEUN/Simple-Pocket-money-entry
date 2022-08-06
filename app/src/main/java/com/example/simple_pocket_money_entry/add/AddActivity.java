@@ -23,24 +23,22 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ContentView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.simple_pocket_money_entry.DBHelper;
 import com.example.simple_pocket_money_entry.R;
+import com.example.simple_pocket_money_entry.TableInfo;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private static final String TAG = "flo###";
-
-    private TextView dateView, categoryView;
+    private TextView fullDateView, categoryView;
     private boolean isChecked = false;
-    private String type, date, content, category, amount;
+    private String type, fullDate, date, content, category, amount, fullAmount;
 
     Calendar myCalendar = Calendar.getInstance();
 
@@ -59,20 +57,20 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         
-        dateView = findViewById(R.id.date_content);
+        fullDateView = findViewById(R.id.date_content);
         categoryView = findViewById(R.id.category_content);
         Button dateButton = findViewById(R.id.date_picker_button);
         Button categoryButton = findViewById(R.id.category_picker_button);
         Button okButton = findViewById(R.id.ok_button);
         Button noButton = findViewById(R.id.no_button);
 
-        Calendar calendar = Calendar.getInstance();
-        DateFormat format = DateFormat.getDateInstance(DateFormat.DEFAULT);
-        format.setTimeZone(calendar.getTimeZone());
-        String todayDate = format.format(calendar.getTime());
+        Date currentTime = Calendar.getInstance().getTime();
+        String todayDate = new SimpleDateFormat("yyyy/MM/dd EE", Locale.getDefault()).format(currentTime);
+        String todayShortDate = new SimpleDateFormat("MM/dd EE", Locale.getDefault()).format(currentTime);
 
-        dateView.setText(todayDate);
-        date = dateView.getText().toString().trim();
+        fullDateView.setText(todayDate);
+        fullDate = fullDateView.getText().toString().trim();
+        date = todayShortDate.trim();
         category = "식비";
 
         dateButton.setOnClickListener(this);
@@ -92,20 +90,27 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.category_picker_button:   // 카테고리 선택
                 showChooseCategoryDialog(this);
                 break;
-            case R.id.ok_button:
+            case R.id.ok_button:                // 추가
                 Checked();
-                Log.d(TAG, "onClick: " + type + date + content + category + amount);
 
                 if(isChecked == true && (content != null) && (amount != null)) {
                     DBHelper helper = new DBHelper(AddActivity.this);
                     SQLiteDatabase db = helper.getWritableDatabase();
 
+                    if(type.equals("수입")) {
+                        fullAmount = amount + "원";
+                    } else if(type.equals("지출")) {
+                        fullAmount = "- " + amount + "원";
+                    }
+
                     ContentValues values = new ContentValues();
                     values.put(TableInfo.COLUMN_NAME_TYPE, type);
+                    values.put(TableInfo.COLUMN_NAME_FULL_DATE, fullDate);
                     values.put(TableInfo.COLUMN_NAME_DATE, date);
                     values.put(TableInfo.COLUMN_NAME_CONTENT, content);
                     values.put(TableInfo.COLUMN_NAME_CATEGORY, category);
                     values.put(TableInfo.COLUMN_NAME_AMOUNT, amount);
+                    values.put(TableInfo.COLUMN_NAME_FULL_AMOUNT, fullAmount);
 
                     long newRowId = db.insert(TableInfo.TABLE_NAME, null, values);
                     if (newRowId == -1) {
@@ -119,7 +124,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     customToastView("작성되지 않은 사항이 있습니다.");
                 }
                 break;
-            case R.id.no_button:
+            case R.id.no_button:            // 취소
                 onBackPressed();
                 break;
         }
@@ -156,10 +161,13 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     private void updateDate() {
-        String myFormat = "yyyy.MM.dd.";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
-        dateView.setText(sdf.format(myCalendar.getTime()));
-        date = dateView.getText().toString().trim();
+        String dateViewFormat = "yyyy/MM/dd EE";
+        String dbViewFormat = "MM/dd EE";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(dateViewFormat, Locale.KOREA);
+        SimpleDateFormat dbFormat = new SimpleDateFormat(dbViewFormat, Locale.KOREA);
+        fullDateView.setText(dateFormat.format(myCalendar.getTime()));
+        fullDate = fullDateView.getText().toString().trim();
+        date = dbFormat.format(myCalendar.getTime()).trim();
     }
 
     private void showChooseCategoryDialog(Context context) {
