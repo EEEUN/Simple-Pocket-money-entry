@@ -1,6 +1,8 @@
 package com.example.simple_pocket_money_entry.list;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simple_pocket_money_entry.R;
+import com.example.simple_pocket_money_entry.add.EditActivity;
 
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     // ViewHolder Class를 선언한다.
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView date, content, category, fullAmount;
+        private TextView date, fullDate, content, category, amount, fullAmount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,11 +56,32 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         viewHolder.date.setText(item.getItemDate());
         viewHolder.content.setText(item.getItemContent());
         viewHolder.category.setText(item.getItemCategory());
-        viewHolder.fullAmount.setText(item.getItemAmount());
+        viewHolder.fullAmount.setText(item.getItemFullAmount());
 
         if(viewHolder.fullAmount.getText().toString().contains("-")) {
             viewHolder.fullAmount.setTextColor(Color.parseColor("#000000"));
         }
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EditActivity.class);
+
+                int id = viewHolder.getAdapterPosition();
+                Log.d("flo###", "onClick: 건네주는 id " + id);
+
+                // below we are passing all our values.
+                intent.putExtra("id", id);
+                intent.putExtra("date", item.getItemDate());
+                intent.putExtra("fullDate", item.getItemFullDate());
+                intent.putExtra("content", item.getItemContent());
+                intent.putExtra("category", item.getItemCategory());
+                intent.putExtra("amount", item.getItemAmount());
+                intent.putExtra("fullAmount", item.getItemFullAmount());
+
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     // 전체 데이터의 개수를 리턴한다.

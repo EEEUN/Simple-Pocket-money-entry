@@ -4,13 +4,15 @@ import java.util.List;
 
 // 상위 리사이클러뷰 아이템클래스를 정의
 public class ListItem {
-    private String itemDate, itemContent, itemCategory, itemAmount;
+    private String itemDate, itemFullDate, itemContent, itemCategory, itemAmount, itemFullAmount;
 
-    public ListItem(String itemTitle, String itemContent, String itemCategory, String itemAmount) {
-        this.itemDate = itemTitle;
+    public ListItem(String itemDate, String itemFullDate, String itemContent, String itemCategory, String itemAmount, String itemFullAmount) {
+        this.itemDate = itemDate;
+        this.itemFullDate = itemFullDate;
         this.itemContent = itemContent;
         this.itemCategory = itemCategory;
         this.itemAmount = itemAmount;
+        this.itemFullAmount = itemFullAmount;
     }
 
     public String getItemDate() {
@@ -19,6 +21,14 @@ public class ListItem {
 
     public void setItemDate(String itemDate) {
         this.itemDate = itemDate;
+    }
+
+    public String getItemFullDate() {
+        return itemFullDate;
+    }
+
+    public void setItemFullDate(String itemFullDate) {
+        this.itemFullDate = itemFullDate;
     }
 
     public String getItemContent() {
@@ -43,6 +53,14 @@ public class ListItem {
 
     public void setItemAmount(String itemAmount) {
         this.itemAmount = itemAmount;
+    }
+
+    public String getItemFullAmount() {
+        return itemFullAmount;
+    }
+
+    public void setItemFullAmount(String itemFullAmount) {
+        this.itemFullAmount = itemFullAmount;
     }
 
 }

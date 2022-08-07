@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,18 +32,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.simple_pocket_money_entry.DBHelper;
 import com.example.simple_pocket_money_entry.R;
 import com.example.simple_pocket_money_entry.TableInfo;
-import com.example.simple_pocket_money_entry.list.ListItem;
+import com.example.simple_pocket_money_entry.home.HomeFragment;
+import com.example.simple_pocket_money_entry.list.ListAdapter;
+import com.example.simple_pocket_money_entry.list.ListFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
-public class AddActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView fullDateView, categoryView;
-    private boolean isChecked = false;
-    private String type, date, fullDate, content, category, amount, fullAmount;
+public class EditActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private TextView fullDateView, categoryView;
+    private int id;
+    private String type, date, fullDate, content, category, amount, fullAmount;
     Calendar myCalendar = Calendar.getInstance();
 
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -57,48 +60,69 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
-        
+        setContentView(R.layout.activity_edit);
+
         fullDateView = findViewById(R.id.date_content);
         categoryView = findViewById(R.id.category_content);
+        EditText editContent = findViewById(R.id.breakdown_content);
+        EditText editAmount = findViewById(R.id.amount_content);
+        RadioButton type1 = findViewById(R.id.add_type1);
+        RadioButton type2 = findViewById(R.id.add_type2);
         Button dateButton = findViewById(R.id.date_picker_button);
         Button categoryButton = findViewById(R.id.category_picker_button);
         Button okButton = findViewById(R.id.ok_button);
         Button noButton = findViewById(R.id.no_button);
+        Button deleteButton = findViewById(R.id.delete_button);
 
-        Date currentTime = Calendar.getInstance().getTime();
-        String todayDate = new SimpleDateFormat("yyyy/MM/dd EE", Locale.getDefault()).format(currentTime);
-        String todayShortDate = new SimpleDateFormat("MM/dd EE", Locale.getDefault()).format(currentTime);
+        // on below lines we are getting data which
+        // we passed in our adapter class.
 
-        fullDateView.setText(todayDate);
-        fullDate = fullDateView.getText().toString().trim();
-        date = todayShortDate.trim();
-        category = "식비";
+        id = getIntent().getIntExtra("id", 0);
+        date = getIntent().getStringExtra("date");
+        fullDate = getIntent().getStringExtra("fullDate");
+        content = getIntent().getStringExtra("content");
+        category = getIntent().getStringExtra("category");
+        amount = getIntent().getStringExtra("amount");
+        fullAmount = getIntent().getStringExtra("fullAmount");
+
+        // setting data to edit text
+        // of our update activity.
+        fullDateView.setText(fullDate);
+        categoryView.setText(category);
+        editContent.setText(content);
+        editAmount.setText(amount);
+
+        if(fullAmount.contains("-")) {
+            type2.setChecked(true);
+        } else {
+            type1.setChecked(true);
+        }
 
         dateButton.setOnClickListener(this);
         categoryButton.setOnClickListener(this);
         okButton.setOnClickListener(this);
         noButton.setOnClickListener(this);
+        deleteButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
+        DBHelper helper = new DBHelper(EditActivity.this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
         switch(view.getId()) {
-            case R.id.date_picker_button:       // 날짜 선택
-                new DatePickerDialog(AddActivity.this,
+            case R.id.date_picker_button:
+                new DatePickerDialog(EditActivity.this,
                         myDatePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH))
                         .show();
                 break;
-            case R.id.category_picker_button:   // 카테고리 선택
+            case R.id.category_picker_button:
                 showChooseCategoryDialog(this);
                 break;
-            case R.id.ok_button:                // 추가
+            case R.id.ok_button:
                 Checked();
 
-                if(isChecked == true && (content != null) && (amount != null)) {
-                    DBHelper helper = new DBHelper(AddActivity.this);
-                    SQLiteDatabase db = helper.getWritableDatabase();
-
+                if((content != null) && (amount != null)) {
                     if(type.equals("수입")) {
                         fullAmount = amount + "원";
                     } else if(type.equals("지출")) {
@@ -114,11 +138,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     values.put(TableInfo.COLUMN_NAME_AMOUNT, amount);
                     values.put(TableInfo.COLUMN_NAME_FULL_AMOUNT, fullAmount);
 
-                    long newRowId = db.insert(TableInfo.TABLE_NAME, null, values);
-                    if (newRowId == -1) {
-                        customToastView("내역을 추가하지 못했습니다.");
+                    boolean isUpdated = helper.updateData(id + 1, type, date, fullDate, content, category, amount, fullAmount);
+                    if (isUpdated == true) {
+                        customToastView("내역을 수정하였습니다.");
                     } else {
-                        customToastView("내역을 추가하였습니다.");
+                        customToastView("내역을 수정하지 못했습니다.");
                     }
 
                     db.close();
@@ -127,8 +151,20 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     customToastView("작성되지 않은 사항이 있습니다.");
                 }
                 break;
-            case R.id.no_button:            // 취소
+            case R.id.no_button:
                 onBackPressed();
+                break;
+            case R.id.delete_button:
+                boolean isDeleted = helper.deleteData(id + 1);
+                if (isDeleted == true) {
+                    customToastView("해당 내역이 삭제되었습니다.");
+                } else {
+                    customToastView("내역을 삭제하지 못했습니다.");
+                }
+
+                db.close();
+                onBackPressed();
+
                 break;
         }
     }
@@ -142,10 +178,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         // 수입 or 지출 선택
         if(type1.isChecked()) {
             type = getString(R.string.income);
-            isChecked = true;
         } else if(type2.isChecked()) {
             type = getString(R.string.expense);
-            isChecked = true;
         }
 
         // 내용 입력

@@ -14,6 +14,7 @@
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn1.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn2.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn3.xml" value="0.189" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn_type1.xml" value="0.156" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_btn_type2.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_home_rectangle.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/bg_round.xml" value="0.175" />
@@ -21,6 +22,7 @@
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/ic_launcher_background.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/radius_toast.xml" value="0.156" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_add.xml" value="0.2" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_edit.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/dialog_choose_category.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_chart.xml" value="0.2246376811594203" />
