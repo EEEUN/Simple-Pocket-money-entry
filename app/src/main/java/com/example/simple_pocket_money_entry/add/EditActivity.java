@@ -138,12 +138,15 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                     values.put(TableInfo.COLUMN_NAME_AMOUNT, amount);
                     values.put(TableInfo.COLUMN_NAME_FULL_AMOUNT, fullAmount);
 
-                    boolean isUpdated = helper.updateData(id + 1, type, date, fullDate, content, category, amount, fullAmount);
-                    if (isUpdated == true) {
-                        customToastView("내역을 수정하였습니다.");
-                    } else {
-                        customToastView("내역을 수정하지 못했습니다.");
-                    }
+                    Log.d("flo###", "onClick: 수정할내용 " + type + date + fullDate + content + category + amount + fullAmount);
+                    // 여기까진 수정한대로 잘 되는걸 보니 업데이트할때 문제가 있음, id도 맞는것같은데...??
+
+//                    boolean isUpdated = helper.updateData(id + 1, type, date, fullDate, content, category, amount, fullAmount);
+//                    if (isUpdated == true) {
+//                        customToastView("내역을 수정하였습니다.");
+//                    } else {
+//                        customToastView("내역을 수정하지 못했습니다.");
+//                    }
 
                     db.close();
                     onBackPressed();
@@ -155,7 +158,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 onBackPressed();
                 break;
             case R.id.delete_button:
-                boolean isDeleted = helper.deleteData(id + 1);
+                boolean isDeleted = helper.deleteData(id);
                 if (isDeleted == true) {
                     customToastView("해당 내역이 삭제되었습니다.");
                 } else {

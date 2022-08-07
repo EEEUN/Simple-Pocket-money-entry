@@ -63,7 +63,7 @@ public class ChooseCategoryDialogAdapter extends BaseAdapter {
     }
 
     private String[] textList = {
-            "식비", "카페",
+            "식비", "카페/간식",
             "문화/오락", "교통",
             "교육", "저축",
             "반려동물", "패션/미용",

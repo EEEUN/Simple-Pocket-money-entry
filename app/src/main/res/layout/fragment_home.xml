@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="이번 달 수입 : "
+            android:text="이번 달 수입 : 0원"
             android:textSize="25sp"
             android:textColor="@color/white" />
 
@@ -51,7 +51,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
-            android:text="이번 달 지출 : "
+            android:text="이번 달 지출 : 0원"
             android:textSize="25sp"
             android:textColor="@color/white" />
 " </LinearLayout>
