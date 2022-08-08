@@ -1,6 +1,8 @@
 package com.example.simple_pocket_money_entry.list;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.simple_pocket_money_entry.DBHelper;
 import com.example.simple_pocket_money_entry.R;
 import com.example.simple_pocket_money_entry.add.EditActivity;
 
@@ -67,11 +70,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditActivity.class);
 
-                int id = viewHolder.getAdapterPosition();
-                Log.d("flo###", "onClick: 건네주는 id " + id);
-
-                // below we are passing all our values.
-                intent.putExtra("id", id);
+                intent.putExtra("id", item.getItemID());
                 intent.putExtra("date", item.getItemDate());
                 intent.putExtra("fullDate", item.getItemFullDate());
                 intent.putExtra("content", item.getItemContent());

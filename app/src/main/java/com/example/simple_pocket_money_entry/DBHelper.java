@@ -42,9 +42,8 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean updateData(int id, String type, String date, String fullDate, String content,
+    public boolean updateData(String id, String type, String date, String fullDate, String content,
                              String category, String amount, String fullAmount) {
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         String strFilter = "_id=" + id;
@@ -57,18 +56,16 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(TableInfo.COLUMN_NAME_AMOUNT, amount);
         values.put(TableInfo.COLUMN_NAME_FULL_AMOUNT, fullAmount);
 
-        Log.d("flo##", "updateData: 수정됨 strFilter " + strFilter);
         db.update(TableInfo.TABLE_NAME, values, strFilter, null);
         db.close();
 
         return true;
     }
 
-    public boolean deleteData(int id) {
+    public boolean deleteData(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String strFilter = "_id=" + id;
 
-        Log.d("flo##", "updateData: 삭제됨 strFilter " + strFilter);
         db.delete(TableInfo.TABLE_NAME, strFilter, null);
         db.close();
         return true;

@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    private int totalBalance = 0, monthIncome = 0, monthExpense =0;
+    private int totalBalance = 0, monthIncome = 0, monthExpense = 0;
     private TextView totalView, incomeView, expenseView;
     private AppCompatButton addButton, listButton, chartButton;
 

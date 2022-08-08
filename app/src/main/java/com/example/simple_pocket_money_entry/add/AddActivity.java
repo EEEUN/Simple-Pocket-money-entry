@@ -120,7 +120,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     } else {
                         customToastView("내역을 추가하였습니다.");
                     }
-
                     db.close();
                     onBackPressed();
                 } else {

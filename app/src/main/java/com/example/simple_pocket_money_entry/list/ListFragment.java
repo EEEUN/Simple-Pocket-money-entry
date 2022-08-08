@@ -118,27 +118,33 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         DBHelper helper = new DBHelper(getActivity().getApplicationContext());
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        // 날짜별로 정렬해서 리스트를 출력하면, db 정렬 순서와 리스트 정렬 순서가 달라 내역을 수정하거나 삭제할 때 꼬인다ㅜㅜ
-        Cursor cursor = db.rawQuery("SELECT * FROM myList ORDER BY full_date",null);
-        //Cursor cursor = db.rawQuery("SELECT * FROM myList",null);
-
         List<ListItem> itemList = new ArrayList<>();
         ListAdapter listAdapter = new ListAdapter(itemList);
-        if(cursor!= null) {
-            while(cursor.moveToNext()) {
-                if(isFullList == true) {    // 전체보기
-                    ListItem listItem = new ListItem(cursor.getString(2), cursor.getString(3), cursor.getString(4),
+
+        if(isFullList == true) {
+            // 전체 보기 : 날짜순 반대정렬
+            Cursor cursor = db.rawQuery("SELECT * FROM myList ORDER BY full_date DESC",null);
+            if(cursor!= null) {
+                while(cursor.moveToNext()) {
+                    ListItem listItem = new ListItem(cursor.getString(0), cursor.getString(2), cursor.getString(3), cursor.getString(4),
                             cursor.getString(5), cursor.getString(6), cursor.getString(7));
                     itemList.add(listItem);
-                } else {                    // 월별 보기
+                }
+            }
+        } else {
+            // 월별 보기 : 날짜순 정렬
+            Cursor cursor = db.rawQuery("SELECT * FROM myList ORDER BY full_date",null);
+            if(cursor!= null) {
+                while(cursor.moveToNext()) {
                     if(cursor.getString(3).contains(month)) {
-                        ListItem listItem = new ListItem(cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        ListItem listItem = new ListItem(cursor.getString(0), cursor.getString(2), cursor.getString(3), cursor.getString(4),
                                 cursor.getString(5), cursor.getString(6), cursor.getString(7));
                         itemList.add(listItem);
                     }
                 }
             }
         }
+
         recyclerView.setAdapter(listAdapter);
         recyclerView.setRecycledViewPool(viewPool);
     }

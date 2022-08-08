@@ -43,8 +43,7 @@ import java.util.Locale;
 public class EditActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView fullDateView, categoryView;
-    private int id;
-    private String type, date, fullDate, content, category, amount, fullAmount;
+    private String id, type, date, fullDate, content, category, amount, fullAmount;
     Calendar myCalendar = Calendar.getInstance();
 
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -73,25 +72,22 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         Button okButton = findViewById(R.id.ok_button);
         Button noButton = findViewById(R.id.no_button);
         Button deleteButton = findViewById(R.id.delete_button);
-
-        // on below lines we are getting data which
-        // we passed in our adapter class.
-
-        id = getIntent().getIntExtra("id", 0);
+        
+        // ListAdapter에서 넣어 전한 intent 받기
+        id = getIntent().getStringExtra("id");
         date = getIntent().getStringExtra("date");
         fullDate = getIntent().getStringExtra("fullDate");
         content = getIntent().getStringExtra("content");
         category = getIntent().getStringExtra("category");
         amount = getIntent().getStringExtra("amount");
         fullAmount = getIntent().getStringExtra("fullAmount");
-
-        // setting data to edit text
-        // of our update activity.
+        
         fullDateView.setText(fullDate);
         categoryView.setText(category);
         editContent.setText(content);
         editAmount.setText(amount);
 
+        // 금액에 '-'가 있으면 지출, 아니면 수입 선택
         if(fullAmount.contains("-")) {
             type2.setChecked(true);
         } else {
@@ -138,16 +134,12 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                     values.put(TableInfo.COLUMN_NAME_AMOUNT, amount);
                     values.put(TableInfo.COLUMN_NAME_FULL_AMOUNT, fullAmount);
 
-                    Log.d("flo###", "onClick: 수정할내용 " + type + date + fullDate + content + category + amount + fullAmount);
-                    // 여기까진 수정한대로 잘 되는걸 보니 업데이트할때 문제가 있음, id도 맞는것같은데...??
-
-//                    boolean isUpdated = helper.updateData(id + 1, type, date, fullDate, content, category, amount, fullAmount);
-//                    if (isUpdated == true) {
-//                        customToastView("내역을 수정하였습니다.");
-//                    } else {
-//                        customToastView("내역을 수정하지 못했습니다.");
-//                    }
-
+                    boolean isUpdated = helper.updateData(id, type, date, fullDate, content, category, amount, fullAmount);
+                    if (isUpdated == true) {
+                        customToastView("내역을 수정하였습니다.");
+                    } else {
+                        customToastView("내역을 수정하지 못했습니다.");
+                    }
                     db.close();
                     onBackPressed();
                 } else {
@@ -164,10 +156,8 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     customToastView("내역을 삭제하지 못했습니다.");
                 }
-
                 db.close();
                 onBackPressed();
-
                 break;
         }
     }
