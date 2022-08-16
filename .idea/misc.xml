@@ -23,7 +23,7 @@
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/ic_home.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/ic_launcher_background.xml" value="0.189" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/drawable/radius_toast.xml" value="0.156" />
-        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_add.xml" value="0.2" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_add.xml" value="0.25" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_edit.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/dialog_choose_category.xml" value="0.2246376811594203" />
@@ -31,13 +31,14 @@
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_list.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/fragment_setting.xml" value="0.2246376811594203" />
-        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/item_list.xml" value="0.2246376811594203" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/item_list.xml" value="0.25" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/list_add_dialog.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/list_item.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/sub_item_list.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/layout/toast_boart.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/menu/btm_navi_menu_item.xml" value="0.27239583333333334" />
         <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/menu/list_date_popup.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/goh06/AndroidStudioProjects/Simple_Pocket_Money_Entry/app/src/main/res/xml/preference_setting.xml" value="0.2246376811594203" />
       </map>
     </option>
   </component>

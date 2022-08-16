@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
@@ -60,13 +63,26 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.tab_setting: {
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.home_ly, new SettingFragment())
-                                .commit();
-                        return true;
+                                .commit();                        return true;
                     }
                 }
                 return false;
             }
         });
+    }
+
+    private void showSetting() {
+//        SharedPreferences setting;
+//        setting = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+//        setting.registerOnSharedPreferenceChangeListener((sp, key) -> {
+//            Log.d("flo####", "클릭된 Preference의 key는 " + key);
+//
+//            if (sp.getBoolean(key, false)) {
+//                Log.d("@@@", key + " on");
+//            } else {
+//                Log.d("@@@", key + " off");
+//            }
+//        });
     }
 
     public void replaceFragment(Fragment fragment) {

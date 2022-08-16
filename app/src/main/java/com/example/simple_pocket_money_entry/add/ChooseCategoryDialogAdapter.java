@@ -69,8 +69,6 @@ public class ChooseCategoryDialogAdapter extends BaseAdapter {
             "반려동물", "패션/미용",
             "생필품", "건강/병원",
             "월급", "용돈",
-            "비상금", "보너스",
-            "대출이자", "주거비",
             "공과금", "보험",
             "경조사비", "기타"
     };

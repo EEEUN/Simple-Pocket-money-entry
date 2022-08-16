@@ -62,22 +62,21 @@
             android:src="@drawable/ic_right" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/chart_header"
-        android:layout_marginTop="10dp">
+    <TextView
+        android:id="@+id/chart_rolling_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/change_month"
+        android:layout_centerHorizontal="true"
+        android:text="@string/chart_rolling_text"
+        android:textSize="15dp"
+        android:textColor="@color/gray" />
 
-        <ImageButton
-            android:id="@+id/list_type_button"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/bg_button"
-            android:padding="10dp"
-            android:src="@drawable/ic_full" />
-    </RelativeLayout>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/change_month"
+        android:layout_margin="20dp" />
 
 </RelativeLayout>

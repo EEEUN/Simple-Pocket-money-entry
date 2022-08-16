@@ -36,7 +36,6 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     private TextView listMonthView;
     private boolean isFullList = false;
     private ImageView leftButton, rightButton;
-    private ImageButton typeButton;
     private FloatingActionButton addButton;
 
     Calendar calendar = Calendar.getInstance();
@@ -50,7 +49,7 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         listMonthView = view.findViewById(R.id.change_month_center);
         leftButton = view.findViewById(R.id.change_month_left);
         rightButton = view.findViewById(R.id.change_month_right);
-        typeButton = view.findViewById(R.id.list_type_button);
+        ImageButton typeButton = view.findViewById(R.id.list_type_button);
         addButton = view.findViewById(R.id.add_button);
 
         Date date = new Date();

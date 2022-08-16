@@ -23,11 +23,11 @@
                 android:text="08/06" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:layout_weight="3"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="3">
             <TextView
                 android:id="@+id/item_content"
                 android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
                 android:textSize="17dp"
                 android:textColor="@color/point_black"
                 android:textStyle="bold"
-                android:text="드림에이스 주식회사"/>
+                android:text="ㅇㅇ 주식회사"/>
             <TextView
                 android:id="@+id/item_category"
                 android:layout_width="wrap_content"
@@ -46,25 +46,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical|end"
-            android:padding="12dp"
+            android:padding="10dp"
             android:layout_weight="1">
 
             <TextView
                 android:id="@+id/item_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30,000,000"
+                android:text="3,000,000"
                 android:textColor="@color/blue"
                 android:textSize="17dp" />
         </LinearLayout>
     </LinearLayout>
-
-
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/sub_item"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"/>-->
 </LinearLayout>
