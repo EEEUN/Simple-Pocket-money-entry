@@ -8,6 +8,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,6 +36,7 @@ import com.example.simple_pocket_money_entry.R;
 import com.example.simple_pocket_money_entry.TableInfo;
 import com.example.simple_pocket_money_entry.list.ListItem;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,6 +46,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private TextView fullDateView, categoryView;
     private boolean isChecked = false;
     private String type, date, fullDate, content, category, amount, fullAmount;
+    private EditText editAmount;
 
     Calendar myCalendar = Calendar.getInstance();
 
@@ -65,6 +71,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         Button categoryButton = findViewById(R.id.category_picker_button);
         Button okButton = findViewById(R.id.ok_button);
         Button noButton = findViewById(R.id.no_button);
+        editAmount = findViewById(R.id.amount_content);
 
         Date currentTime = Calendar.getInstance().getTime();
         String todayDate = new SimpleDateFormat("yyyy/MM/dd EE", Locale.getDefault()).format(currentTime);
@@ -79,6 +86,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         categoryButton.setOnClickListener(this);
         okButton.setOnClickListener(this);
         noButton.setOnClickListener(this);
+
+        editAmount.addTextChangedListener(new CustomTextWatcher(editAmount));   // 천단위 콤마 설정
     }
 
     @Override
@@ -95,14 +104,16 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.ok_button:                // 추가
                 Checked();
 
-                if(isChecked == true && (content != null) && (amount != null)) {
+                if(isChecked == true && (content != null) && (fullAmount != null)) {
                     DBHelper helper = new DBHelper(AddActivity.this);
                     SQLiteDatabase db = helper.getWritableDatabase();
 
                     if(type.equals("수입")) {
-                        fullAmount = amount + "원";
+                        amount = fullAmount.replaceAll(",", "");    // ex) 6000
+                        fullAmount = fullAmount + "원";          // ex) 6,000원
                     } else if(type.equals("지출")) {
-                        fullAmount = "- " + amount + "원";
+                        amount = fullAmount.replaceAll(",", "");
+                        fullAmount = "- " + fullAmount + "원";
                     }
 
                     ContentValues values = new ContentValues();
@@ -136,7 +147,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         RadioButton type1 = findViewById(R.id.add_type1);
         RadioButton type2 = findViewById(R.id.add_type2);
         EditText editContent = findViewById(R.id.breakdown_content);
-        EditText editAmount = findViewById(R.id.amount_content);
 
         // 수입 or 지출 선택
         if(type1.isChecked()) {
@@ -155,10 +165,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         }
 
         // 금액 입력
-        if (!editAmount.getText().toString().equals("")) {
-            amount = editAmount.getText().toString().trim();
+        if(!editAmount.getText().toString().equals("")) {
+            fullAmount = editAmount.getText().toString().trim();    // ex) 6,000
         } else {
-            amount = null;
+            fullAmount = null;
         }
     }
 
@@ -192,6 +202,44 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 dialog.dismiss();
             }
         });
+    }
+
+    public class CustomTextWatcher implements TextWatcher {
+        private EditText editText;
+        String strAmount = "";
+
+        CustomTextWatcher(EditText et) {
+            editText = et;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(!TextUtils.isEmpty(s.toString()) && !s.toString().equals(strAmount)) {
+                strAmount = makeStringComma(s.toString().replace(",", ""));
+                editText.setText(strAmount);
+                Editable editable = editText.getText();
+                Selection.setSelection(editable, strAmount.length());
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+
+        protected String makeStringComma(String str) {    // 천단위 콤마설정.
+            if (str.length() == 0) {
+                return "";
+            }
+            long value = Long.parseLong(str);
+            DecimalFormat format = new DecimalFormat("###,###");
+            return format.format(value);
+        }
     }
 
     private void customToastView(String text) {

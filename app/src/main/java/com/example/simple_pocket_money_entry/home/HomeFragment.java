@@ -21,12 +21,14 @@ import com.example.simple_pocket_money_entry.list.ListItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
+    private DecimalFormat decimalFormat = new DecimalFormat("###,###");
     private int totalBalance = 0, monthIncome = 0, monthExpense = 0;
     private TextView totalView, incomeView, expenseView;
     private AppCompatButton addButton, listButton, chartButton;
@@ -94,7 +96,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             totalBalance = -1;
         cursor.close();
 
-        totalView.setText(totalBalance + "원");
+        String strTotalBalance = decimalFormat.format(totalBalance);
+        totalView.setText(strTotalBalance + "원");
     }
 
     private void showMonthBalance() {
@@ -119,7 +122,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         }
         cursor.close();
-        incomeView.setText("이번 달 수입 : " + monthIncome + "원");
-        expenseView.setText("이번 달 지출 : " + monthExpense + "원");
+
+        String strMonthIncome = decimalFormat.format(monthIncome);
+        String strMonthExpense = decimalFormat.format(monthExpense);
+        incomeView.setText("이번 달 수입 : " + strMonthIncome + "원");
+        expenseView.setText("이번 달 지출 : " + strMonthExpense + "원");
     }
 }

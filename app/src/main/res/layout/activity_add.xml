@@ -179,6 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
+                android:inputType="number"
                 android:ems="10"
                 android:hint="8000"
                 android:maxLength="9"

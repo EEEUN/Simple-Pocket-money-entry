@@ -10,6 +10,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -36,12 +40,12 @@ import com.example.simple_pocket_money_entry.home.HomeFragment;
 import com.example.simple_pocket_money_entry.list.ListAdapter;
 import com.example.simple_pocket_money_entry.list.ListFragment;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class EditActivity extends AppCompatActivity implements View.OnClickListener{
-
     private TextView fullDateView, categoryView;
     private String id, type, date, fullDate, content, category, amount, fullAmount;
     Calendar myCalendar = Calendar.getInstance();
@@ -99,6 +103,8 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         okButton.setOnClickListener(this);
         noButton.setOnClickListener(this);
         deleteButton.setOnClickListener(this);
+
+        editAmount.addTextChangedListener(new CustomTextWatcher(editAmount));   // 천단위 콤마 설정
     }
 
     @Override
@@ -118,11 +124,13 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.ok_button:
                 Checked();
 
-                if((content != null) && (amount != null)) {
+                if((content != null) && (fullAmount != null)) {
                     if(type.equals("수입")) {
-                        fullAmount = amount + "원";
+                        amount = fullAmount.replaceAll(",", "");    // ex) 6000
+                        fullAmount = fullAmount + "원";          // ex) 6,000원
                     } else if(type.equals("지출")) {
-                        fullAmount = "- " + amount + "원";
+                        amount = fullAmount.replaceAll(",", "");
+                        fullAmount = "- " + fullAmount + "원";
                     }
 
                     ContentValues values = new ContentValues();
@@ -184,9 +192,9 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
         // 금액 입력
         if (!editAmount.getText().toString().equals("")) {
-            amount = editAmount.getText().toString().trim();
+            fullAmount = editAmount.getText().toString().trim();
         } else {
-            amount = null;
+            fullAmount = null;
         }
     }
 
@@ -220,6 +228,44 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 dialog.dismiss();
             }
         });
+    }
+
+    public class CustomTextWatcher implements TextWatcher {
+        private EditText editText;
+        String strAmount = "";
+
+        CustomTextWatcher(EditText et) {
+            editText = et;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(!TextUtils.isEmpty(s.toString()) && !s.toString().equals(strAmount)) {
+                strAmount = makeStringComma(s.toString().replace(",", ""));
+                editText.setText(strAmount);
+                Editable editable = editText.getText();
+                Selection.setSelection(editable, strAmount.length());
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+
+        protected String makeStringComma(String str) {    // 천단위 콤마설정.
+            if (str.length() == 0) {
+                return "";
+            }
+            long value = Long.parseLong(str);
+            DecimalFormat format = new DecimalFormat("###,###");
+            return format.format(value);
+        }
     }
 
     private void customToastView(String text) {

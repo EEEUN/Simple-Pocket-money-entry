@@ -32,7 +32,7 @@
 
     <!--    분석-->
     <string name="chart">분석</string>
-    <string name="chart_rolling_text">그래프를 돌리면 회전합니다.</string>
+    <string name="chart_rolling_text">항목이 잘려 보이지 않는다면\n 그래프를 돌려 확인할 수 있습니다.</string>
 
     <!--    설정-->
     <string name="setting">설정</string>

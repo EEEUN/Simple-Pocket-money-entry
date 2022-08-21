@@ -122,8 +122,8 @@ public class ChartFragment extends Fragment implements View.OnClickListener {
         dataSet.setValueLinePart2Length(0);
 
         pieChart.setMinAngleForSlices(15f);                                    // 항목 사이에 거리두기
-        pieChart.setExtraLeftOffset(20f);
-        pieChart.setExtraRightOffset(20f);
+        pieChart.setExtraLeftOffset(25f);
+        pieChart.setExtraRightOffset(25f);
         pieChart.getDescription().setEnabled(false);
 
         PieData data = new PieData((dataSet));
