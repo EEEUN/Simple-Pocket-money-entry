@@ -1,17 +1,14 @@
 package com.example.simple_pocket_money_entry;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.example.simple_pocket_money_entry.chart.ChartFragment;
 import com.example.simple_pocket_money_entry.home.HomeFragment;
@@ -69,25 +66,5 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    private void showSetting() {
-//        SharedPreferences setting;
-//        setting = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-//        setting.registerOnSharedPreferenceChangeListener((sp, key) -> {
-//            Log.d("flo####", "클릭된 Preference의 key는 " + key);
-//
-//            if (sp.getBoolean(key, false)) {
-//                Log.d("@@@", key + " on");
-//            } else {
-//                Log.d("@@@", key + " off");
-//            }
-//        });
-    }
-
-    public void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.home_ly, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 }

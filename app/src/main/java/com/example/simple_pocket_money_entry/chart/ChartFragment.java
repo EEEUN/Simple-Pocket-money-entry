@@ -16,7 +16,6 @@ import com.example.simple_pocket_money_entry.DBHelper;
 import com.example.simple_pocket_money_entry.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;

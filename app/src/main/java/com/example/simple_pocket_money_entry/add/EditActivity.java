@@ -4,17 +4,13 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -36,9 +32,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.simple_pocket_money_entry.DBHelper;
 import com.example.simple_pocket_money_entry.R;
 import com.example.simple_pocket_money_entry.TableInfo;
-import com.example.simple_pocket_money_entry.home.HomeFragment;
-import com.example.simple_pocket_money_entry.list.ListAdapter;
-import com.example.simple_pocket_money_entry.list.ListFragment;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -144,14 +137,14 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
                     boolean isUpdated = helper.updateData(id, type, date, fullDate, content, category, amount, fullAmount);
                     if (isUpdated == true) {
-                        customToastView("내역을 수정하였습니다.");
+                        Toast.makeText(getApplicationContext(), "내역을 수정하였습니다.", Toast.LENGTH_SHORT).show();
                     } else {
-                        customToastView("내역을 수정하지 못했습니다.");
+                        Toast.makeText(getApplicationContext(), "내역을 수정하지 못했습니다.", Toast.LENGTH_SHORT).show();
                     }
                     db.close();
                     onBackPressed();
                 } else {
-                    customToastView("작성되지 않은 사항이 있습니다.");
+                    Toast.makeText(getApplicationContext(), "작성되지 않은 사항이 있습니다.", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.no_button:
@@ -160,9 +153,9 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.delete_button:
                 boolean isDeleted = helper.deleteData(id);
                 if (isDeleted == true) {
-                    customToastView("해당 내역이 삭제되었습니다.");
+                    Toast.makeText(getApplicationContext(), "해당 내역이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                 } else {
-                    customToastView("내역을 삭제하지 못했습니다.");
+                    Toast.makeText(getApplicationContext(), "내역을 삭제하지 못했습니다.", Toast.LENGTH_SHORT).show();
                 }
                 db.close();
                 onBackPressed();
@@ -266,17 +259,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             DecimalFormat format = new DecimalFormat("###,###");
             return format.format(value);
         }
-    }
-
-    private void customToastView(String text) {
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast_board, (ViewGroup) findViewById(R.id.toast_layout_root));
-        TextView textView = layout.findViewById(R.id.textboard);
-        textView.setText(text);
-
-        Toast toastView = Toast.makeText(getApplicationContext(),text, Toast.LENGTH_SHORT);
-        toastView.setView(layout);
-        toastView.show();
     }
 
     // 포커스를 가진 뷰 외의 영역을 터치하면 키보드가 내려감

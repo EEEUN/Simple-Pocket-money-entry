@@ -36,9 +36,8 @@
 
     <!--    설정-->
     <string name="setting">설정</string>
-    <string name="setting_password">비밀번호 설정</string>
     <string name="setting_init">내역 초기화</string>
-    <string name="setting_license">오픈소스 라이센스</string>
+    <string name="setting_license">오픈소스 라이선스</string>
     <string name="setting_privacy_policy">개인정보처리방침</string>
 
 </resources>

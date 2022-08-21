@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
     <Preference
-        android:key="password_key"
-        android:title="@string/setting_password" />
-    <Preference
-        android:key="init_key"
-        android:title="@string/setting_init" />
-    <Preference
-        android:key="license_key"
-        android:title="@string/setting_license" />
-    <Preference
-        android:key="privacy_policy_key"
-        android:title="@string/setting_privacy_policy" />
+        android:layout="@layout/setting_title_preference"/>
 
-<!--    아 커스텀 프리퍼런스 만들어야하는데 개귀찮다~~-->
+    <PreferenceCategory>
+        <Preference
+            android:key="init_key"
+            android:layout="@layout/setting_item1_preference"/>
+        <Preference
+            android:key="license_key"
+            android:layout="@layout/setting_item2_preference" />
+        <Preference
+            android:key="privacy_policy_key"
+            android:layout="@layout/setting_item3_preference" />
+    </PreferenceCategory>
 </PreferenceScreen>

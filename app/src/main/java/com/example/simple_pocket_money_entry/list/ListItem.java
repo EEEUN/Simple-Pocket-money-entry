@@ -1,7 +1,5 @@
 package com.example.simple_pocket_money_entry.list;
 
-import java.util.List;
-
 // 리사이클러뷰 아이템클래스 정의
 public class ListItem {
     private String itemID, itemDate, itemFullDate, itemContent, itemCategory, itemAmount, itemFullAmount;
