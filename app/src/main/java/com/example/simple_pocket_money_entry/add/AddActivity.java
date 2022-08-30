@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
@@ -91,9 +93,14 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.date_picker_button:       // 날짜 선택
-                new DatePickerDialog(AddActivity.this,
-                        myDatePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH))
-                        .show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddActivity.this,
+                        myDatePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+
+                Button nButton = datePickerDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+                nButton.setTextColor(Color.parseColor("#104E82"));
+                Button pButton = datePickerDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                pButton.setTextColor(Color.parseColor("#104E82"));
                 break;
             case R.id.category_picker_button:   // 카테고리 선택
                 showChooseCategoryDialog(this);

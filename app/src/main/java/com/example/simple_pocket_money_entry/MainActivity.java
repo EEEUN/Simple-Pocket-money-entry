@@ -1,7 +1,11 @@
 package com.example.simple_pocket_money_entry;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -66,5 +70,30 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("정말 종료하시겠습니까?");
+        builder.setPositiveButton("종료", new AlertDialog.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("취소", new AlertDialog.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button nButton = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        nButton.setTextColor(Color.parseColor("#104E82"));
+        Button pButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        pButton.setTextColor(Color.parseColor("#104E82"));
     }
 }

@@ -237,7 +237,7 @@ public class ChartFragment extends Fragment implements View.OnClickListener {
         if(eduSum != 0) {
             dataValue.add(new PieEntry(eduSum, "교육"));
         }
-        if(salarySum != 0) {
+        if(savingSum != 0) {
             dataValue.add(new PieEntry(savingSum, "저축"));
         }
         if(petSum != 0) {
@@ -251,6 +251,12 @@ public class ChartFragment extends Fragment implements View.OnClickListener {
         }
         if(healthSum != 0) {
             dataValue.add(new PieEntry(healthSum, "건강/병원"));
+        }
+        if(salarySum != 0) {
+            dataValue.add(new PieEntry(salarySum, "월급"));
+        }
+        if(pocketSum != 0) {
+            dataValue.add(new PieEntry(pocketSum, "용돈"));
         }
         if(utilitySum != 0) {
             dataValue.add(new PieEntry(utilitySum, "공과금"));
